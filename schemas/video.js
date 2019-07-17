@@ -1,11 +1,13 @@
 const { gql } = require('apollo-server-express');
-  module.exports = gql`
-    type Video {
+
+module.exports = gql`
+  type Video {
     id: ID!
     title: String
     author: String
     viewer: Int
     url: String
+    thumbnailUrl: String
     like: Int
     dislike: Int
   }

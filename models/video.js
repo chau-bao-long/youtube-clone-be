@@ -7,7 +7,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     title: DataTypes.STRING,
     author: DataTypes.STRING,
-    url: DataTypes.STRING,
+    url: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    thumbnailUrl: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     viewer: DataTypes.NUMBER,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE,
