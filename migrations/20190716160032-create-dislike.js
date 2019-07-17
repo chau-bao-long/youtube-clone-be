@@ -2,44 +2,44 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Dislikes',
-      {
-        id: {
-          allowNull: false,
-          type: Sequelize.INTEGER,
-          primaryKey: true,
-          autoIncrement: true
+    return queryInterface.createTable('Dislikes', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER
+      },
+      UserId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        references: {
+          model: 'Users',
+          key: 'id'
         },
-        UserId: {
-          type: Sequelize.INTEGER,
-          onDelete: "CASCADE",
-          references: {
-            model: 'users',
-            key: 'id'
-          },
-          allowNull: false
+      },
+      VideoId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        references: {
+          model: 'Videos',
+          key: 'id'
         },
-        VideoId: {
-          type: Sequelize.INTEGER,
-          onDelete: "CASCADE",
-          references: {
-            model: 'videos',
-            key: 'id'
-          },
-          allowNull: false
-        },
-        createdAt: {
-          allowNull: false,
-          type: Sequelize.DATE
-        },
-        updatedAt: {
-          allowNull: false,
-          type: Sequelize.DATE
-        }
-      });
-    },
+      },
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
+    });
+  },
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('Dislikes');
   }
 };
+
