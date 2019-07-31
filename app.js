@@ -32,7 +32,12 @@ const server = new ApolloServer({
 	}),
 });
 
-app.use(cors());
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -57,6 +62,6 @@ app.post('/login', passport.authenticate('local', { session: false }), (req, res
   res.json({ message: 'ok' });
 });
 
-server.applyMiddleware({ app });
+server.applyMiddleware({ app, cors: false });
 
 module.exports = app;
